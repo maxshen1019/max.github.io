@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>貨品統計</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>貨品統計</h1>
+    <table id="productTable">
+        <thead>
+            <tr>
+                <th>貨品名稱</th>
+                <th>數量</th>
+                <th>價格</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>貨品1</td>
+                <td>10</td>
+                <td>100</td>
+            </tr>
+            <tr>
+                <td>貨品2</td>
+                <td>5</td>
+                <td>200</td>
+            </tr>
+            <tr>
+                <td>貨品3</td>
+                <td>20</td>
+                <td>50</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>總計</th>
+                <th id="totalQuantity"></th>
+                <th id="totalPrice"></th>
+            </tr>
+        </tfoot>
+    </table>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let totalQuantity = 0;
+            let totalPrice = 0;
+            const rows = document.querySelectorAll('#productTable tbody tr');
+            rows.forEach(row => {
+                const quantity = parseInt(row.cells[1].textContent);
+                const price = parseInt(row.cells[2].textContent);
+                totalQuantity += quantity;
+                totalPrice += quantity * price;
+            });
+            document.getElementById('totalQuantity').textContent = totalQuantity;
+            document.getElementById('totalPrice').textContent = totalPrice;
+        });
+    </script>
+</body>
+</html>
